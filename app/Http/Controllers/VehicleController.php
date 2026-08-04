@@ -34,6 +34,29 @@ class VehicleController extends Controller
         return redirect()->route('vehicles.index')->with('success', 'Vehículo registrado exitosamente.');
     }
 
+    // Propietario registra su propio vehículo (queda visible para el taller)
+    public function storeOwn(Request $request)
+    {
+        $request->validate([
+            'vin'   => 'required|string|max:17|unique:vehicles,vin',
+            'plate' => 'required|string|max:10|unique:vehicles,plate',
+            'brand' => 'required|string|max:50',
+            'model' => 'required|string|max:50',
+            'year'  => 'required|integer|min:1900|max:' . (date('Y') + 1),
+        ]);
+
+        Vehicle::create([
+            'user_id' => auth()->id(),
+            'vin'     => $request->vin,
+            'plate'   => $request->plate,
+            'brand'   => $request->brand,
+            'model'   => $request->model,
+            'year'    => $request->year,
+        ]);
+
+        return redirect()->route('dashboard')->with('success', 'Vehículo registrado. Ahora es visible para el taller.');
+    }
+
     public function edit(Vehicle $vehicle)
     {
         return view('vehicles.edit', compact('vehicle'));

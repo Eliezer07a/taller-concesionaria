@@ -17,16 +17,16 @@ class TicketController extends Controller
         if (auth()->user()->role === 'propietario') {
             $vehicles = Vehicle::where('user_id', auth()->id())->get();
             $vehicleIds = $vehicles->pluck('id');
-            $tickets = DiagnosticTicket::with(['vehicle', 'workOrder'])
+            $tickets = DiagnosticTicket::with(['vehicle', 'workOrder', 'mechanic'])
                 ->whereIn('vehicle_id', $vehicleIds)
                 ->latest()->get();
 
             return view('dashboard-propietario', compact('tickets', 'vehicles'));
         }
 
-        // Mecánico: ve todos los tickets y vehículos
-        $tickets = DiagnosticTicket::with(['vehicle', 'workOrder', 'mechanic'])->latest()->get();
-        $vehicles = Vehicle::all();
+        // Mecánico: ve todos los tickets y vehículos con su propietario
+        $tickets = DiagnosticTicket::with(['vehicle.user', 'workOrder', 'mechanic'])->latest()->get();
+        $vehicles = Vehicle::with('user')->get();
 
         return view('dashboard', compact('tickets', 'vehicles'));
     }

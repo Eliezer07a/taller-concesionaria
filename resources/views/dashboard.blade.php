@@ -27,7 +27,7 @@
                         <label class="block text-sm font-medium text-gray-700 dark:text-gray-300">Seleccionar Vehículo</label>
                         <select name="vehicle_id" required class="mt-1 block w-full rounded-md border-gray-300 dark:border-slate-600 dark:bg-gray-900 dark:text-white">
                             @foreach($vehicles as $vehicle)
-                                <option value="{{ $vehicle->id }}">{{ $vehicle->brand }} {{ $vehicle->model }} ({{ $vehicle->plate }})</option>
+                                <option value="{{ $vehicle->id }}">{{ $vehicle->brand }} {{ $vehicle->model }} ({{ $vehicle->plate }}) — {{ $vehicle->user->name ?? 'Sin propietario' }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -76,6 +76,7 @@
                         <tr>
                             <th class="px-4 py-3">Código</th>
                             <th class="px-4 py-3">Vehículo</th>
+                            <th class="px-4 py-3">Cliente</th>
                             <th class="px-4 py-3">Falla Documentada</th>
                             <th class="px-4 py-3">Fotos</th>
                             <th class="px-4 py-3">Estado</th>
@@ -97,6 +98,11 @@
                                     <a href="{{ route('vehicles.history', $ticket->vehicle) }}" class="text-indigo-500 hover:text-indigo-700 ml-1" title="Ver historial">
                                         <i class="fa-solid fa-clock-rotate-left text-xs"></i>
                                     </a>
+                                </td>
+                                <td class="px-4 py-3">
+                                    <span class="inline-flex items-center gap-1 text-xs font-semibold px-2 py-1 rounded-full bg-slate-100 text-slate-700 dark:bg-slate-700 dark:text-slate-200">
+                                        <i class="fa-solid fa-user text-indigo-500"></i> {{ $ticket->vehicle->user->name ?? 'Sin propietario' }}
+                                    </span>
                                 </td>
                                 <td class="px-4 py-3">{{ $ticket->reported_fault }}</td>
                                 <td class="px-4 py-3">

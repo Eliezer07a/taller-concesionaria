@@ -3,7 +3,6 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\TrackingController;
-use App\Http\Controllers\MechanicController;
 use App\Http\Controllers\VehicleController;
 use Illuminate\Support\Facades\Route;
 
@@ -38,12 +37,8 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Rutas de mecánico / asesor (solo mecánicos)
-    Route::middleware('role:mecanico')->prefix('taller')->name('mechanic.')->group(function () {
-        Route::get('/dashboard', [MechanicController::class, 'index'])->name('dashboard');
-        Route::post('/tickets', [MechanicController::class, 'storeTicket'])->name('tickets.store');
-        Route::put('/orders/{workOrder}', [MechanicController::class, 'updateWorkOrder'])->name('orders.update');
-    });
+    // Propietario: registrar sus propios vehículos (visibles al taller)
+    Route::middleware('role:propietario')->post('/mis-vehiculos', [VehicleController::class, 'storeOwn'])->name('vehicles.store-own');
 
     // CRUD de Vehículos (solo mecánicos)
     Route::middleware('role:mecanico')->resource('vehicles', VehicleController::class)->except('show');
