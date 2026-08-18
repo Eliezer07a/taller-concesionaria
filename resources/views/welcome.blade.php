@@ -89,8 +89,8 @@
                             <a href="{{ route('register') }}" class="px-7 py-3.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 transition-all duration-300 shadow-lg shadow-indigo-600/25 hover:shadow-indigo-500/40 flex items-center gap-2 text-base">
                                 <i class="fa-solid fa-rocket"></i> Comenzar Gratis
                             </a>
-                            <a href="#como-funciona" class="px-7 py-3.5 bg-slate-800/80 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-700 hover:border-slate-600 transition-all duration-300 flex items-center gap-2 text-base">
-                                <i class="fa-solid fa-play"></i> ¿Cómo Funciona?
+                            <a href="#features" class="px-7 py-3.5 bg-slate-800/80 border border-slate-700 text-white font-bold rounded-xl hover:bg-slate-700 hover:border-slate-600 transition-all duration-300 flex items-center gap-2 text-base">
+                                <i class="fa-solid fa-star"></i> Ver Características
                             </a>
                         </div>
 
