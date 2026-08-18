@@ -201,8 +201,11 @@
                     </div>
                 </div>
                 @empty
-                <div class="text-center py-12">
-                    <i class="fa-solid fa-car-side text-4xl block mb-3 text-slate-600"></i>
+                <div class="text-center py-16">
+                    <div class="w-16 h-16 rounded-2xl bg-slate-700/50 border border-slate-600/50 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-car-side text-2xl text-slate-500"></i>
+                    </div>
+                    <p class="text-white font-semibold mb-1">Sin historial</p>
                     <p class="text-slate-500 text-sm">No hay reparaciones registradas para este vehículo.</p>
                 </div>
                 @endforelse

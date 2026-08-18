@@ -66,9 +66,12 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="6" class="px-5 py-10 text-center text-slate-500 text-sm">
-                                    <i class="fa-solid fa-car-side text-3xl block mb-2 text-slate-600"></i>
-                                    No hay vehículos registrados.
+                                <td colspan="6" class="px-5 py-16 text-center">
+                                    <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-car-side text-2xl text-indigo-400"></i>
+                                    </div>
+                                    <p class="text-white font-semibold mb-1">Sin vehículos</p>
+                                    <p class="text-slate-500 text-sm">No hay vehículos registrados aún.</p>
                                 </td>
                             </tr>
                             @endforelse

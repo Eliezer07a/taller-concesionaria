@@ -252,8 +252,11 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="8" class="px-5 py-12 text-center">
-                                    <i class="fa-solid fa-circle-check text-4xl mb-3 block text-emerald-500/50"></i>
+                                <td colspan="8" class="px-5 py-16 text-center">
+                                    <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-circle-check text-2xl text-emerald-400"></i>
+                                    </div>
+                                    <p class="text-white font-semibold mb-1">Todo al día</p>
                                     <p class="text-slate-500 text-sm">No hay reparaciones activas en este momento.</p>
                                 </td>
                             </tr>
@@ -324,8 +327,11 @@
                             </tr>
                             @empty
                             <tr>
-                                <td colspan="9" class="px-5 py-12 text-center">
-                                    <i class="fa-solid fa-hourglass-half text-4xl mb-3 block text-slate-600"></i>
+                                <td colspan="9" class="px-5 py-16 text-center">
+                                    <div class="w-16 h-16 rounded-2xl bg-slate-700/50 border border-slate-600/50 flex items-center justify-center mx-auto mb-4">
+                                        <i class="fa-solid fa-hourglass-half text-2xl text-slate-500"></i>
+                                    </div>
+                                    <p class="text-white font-semibold mb-1">Sin finalizar</p>
                                     <p class="text-slate-500 text-sm">Aún no hay reparaciones finalizadas.</p>
                                 </td>
                             </tr>
