@@ -46,7 +46,6 @@ class TestDatabaseSeeder extends Seeder
             'brand' => 'Toyota',
             'model' => 'Corolla',
             'year' => 2018,
-            'vin' => '2T1BURHE0JC012345',
         ]);
 
         $v2 = Vehicle::create([
@@ -55,7 +54,6 @@ class TestDatabaseSeeder extends Seeder
             'brand' => 'Hyundai',
             'model' => 'Accent',
             'year' => 2016,
-            'vin' => 'KMHCT4AE6GU098765',
         ]);
 
         $v3 = Vehicle::create([
@@ -64,7 +62,6 @@ class TestDatabaseSeeder extends Seeder
             'brand' => 'Nissan',
             'model' => 'Sentra',
             'year' => 2019,
-            'vin' => '3N1AB7AP5KY345678',
         ]);
 
         // === TICKETS DE DIAGNÓSTICO Y ÓRDENES DE TRABAJO ===

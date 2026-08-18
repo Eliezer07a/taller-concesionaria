@@ -22,39 +22,15 @@ class VehicleController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'vin'     => 'required|string|max:17|unique:vehicles,vin',
             'plate'   => 'required|string|max:10|unique:vehicles,plate',
             'brand'   => 'required|string|max:50',
             'model'   => 'required|string|max:50',
             'year'    => 'required|integer|min:1900|max:' . (date('Y') + 1),
         ]);
 
-        Vehicle::create($request->only(['user_id', 'vin', 'plate', 'brand', 'model', 'year']));
+        Vehicle::create($request->only(['user_id', 'plate', 'brand', 'model', 'year']));
 
         return redirect()->route('vehicles.index')->with('success', 'Vehículo registrado exitosamente.');
-    }
-
-    // Propietario registra su propio vehículo (queda visible para el taller)
-    public function storeOwn(Request $request)
-    {
-        $request->validate([
-            'vin'   => 'required|string|max:17|unique:vehicles,vin',
-            'plate' => 'required|string|max:10|unique:vehicles,plate',
-            'brand' => 'required|string|max:50',
-            'model' => 'required|string|max:50',
-            'year'  => 'required|integer|min:1900|max:' . (date('Y') + 1),
-        ]);
-
-        Vehicle::create([
-            'user_id' => auth()->id(),
-            'vin'     => $request->vin,
-            'plate'   => $request->plate,
-            'brand'   => $request->brand,
-            'model'   => $request->model,
-            'year'    => $request->year,
-        ]);
-
-        return redirect()->route('dashboard')->with('success', 'Vehículo registrado. Ahora es visible para el taller.');
     }
 
     public function edit(Vehicle $vehicle)
@@ -66,14 +42,13 @@ class VehicleController extends Controller
     {
         $request->validate([
             'user_id' => 'required|exists:users,id',
-            'vin'     => 'required|string|max:17|unique:vehicles,vin,' . $vehicle->id,
             'plate'   => 'required|string|max:10|unique:vehicles,plate,' . $vehicle->id,
             'brand'   => 'required|string|max:50',
             'model'   => 'required|string|max:50',
             'year'    => 'required|integer|min:1900|max:' . (date('Y') + 1),
         ]);
 
-        $vehicle->update($request->only(['user_id', 'vin', 'plate', 'brand', 'model', 'year']));
+        $vehicle->update($request->only(['user_id', 'plate', 'brand', 'model', 'year']));
 
         return redirect()->route('vehicles.index')->with('success', 'Vehículo actualizado exitosamente.');
     }
@@ -86,6 +61,9 @@ class VehicleController extends Controller
 
     public function history(Vehicle $vehicle)
     {
+        $user = auth()->user();
+        abort_unless($user->role === 'mecanico' || $vehicle->user_id === $user->id, 403);
+
         $vehicle->load('user', 'diagnosticTickets.workOrder', 'diagnosticTickets.mechanic');
         $tickets = $vehicle->diagnosticTickets()->latest()->get();
 

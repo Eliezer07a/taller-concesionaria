@@ -11,6 +11,11 @@ Route::get('/', function () {
 });
 
 // 1. Rutas Públicas de Seguimiento (Cliente)
+Route::get('/seguimiento', function (\Illuminate\Http\Request $request) {
+    $code = strtoupper(trim((string) $request->query('code', '')));
+
+    return $code !== '' ? redirect()->route('tracking.public', $code) : redirect('/');
+})->name('tracking.form');
 Route::get('/seguimiento/{tracking_code}', [TrackingController::class, 'show'])->name('tracking.public');
 Route::get('/api/seguimiento/{tracking_code}', [TrackingController::class, 'getStatus'])->name('api.tracking.status');
 
@@ -37,11 +42,14 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     
-    // Propietario: registrar sus propios vehículos (visibles al taller)
-    Route::middleware('role:propietario')->post('/mis-vehiculos', [VehicleController::class, 'storeOwn'])->name('vehicles.store-own');
+    // Propietario: endpoint JSON de sus reparaciones para auto-refresco (Fetch JS)
+    Route::middleware('role:propietario')->get('/api/mis-reparaciones', [TicketController::class, 'misReparaciones'])->name('api.mis-reparaciones');
 
     // CRUD de Vehículos (solo mecánicos)
     Route::middleware('role:mecanico')->resource('vehicles', VehicleController::class)->except('show');
+
+    // Eliminar ticket / orden de trabajo (solo mecánicos)
+    Route::middleware('role:mecanico')->delete('/tickets/{ticket}', [TicketController::class, 'destroy'])->name('tickets.destroy');
 
 }); // <-- Aquí se cierra el grupo principal de autenticación
 

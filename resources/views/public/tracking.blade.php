@@ -9,7 +9,7 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen flex items-center justify-center p-4">
 
-    <div class="max-w-md w-full bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl p-6 relative overflow-hidden">
+    <div class="max-w-lg w-full bg-slate-800 border border-slate-700 rounded-2xl shadow-2xl p-6 relative overflow-hidden">
         
         <!-- Indicador de Tiempo Real -->
         <div class="absolute top-4 right-4 flex items-center space-x-2">
@@ -21,8 +21,10 @@
         </div>
 
         <div class="text-center mb-6">
-            <i class="fa-solid fa-screwdriver-wrench text-4xl text-indigo-500 mb-2"></i>
-            <h2 class="text-2xl font-bold text-white">Estado de Reparación</h2>
+            <div class="w-14 h-14 rounded-2xl bg-indigo-500/10 flex items-center justify-center mx-auto mb-3">
+                <i class="fa-solid fa-screwdriver-wrench text-2xl text-indigo-400"></i>
+            </div>
+            <h2 class="text-xl font-bold text-white">Estado de Reparación</h2>
             <p class="text-xs text-slate-400 mt-1">Código: <span class="font-mono text-indigo-400 font-bold">{{ $tracking_code }}</span></p>
         </div>
 
@@ -31,47 +33,127 @@
             <p class="text-sm text-slate-400 mt-2">Cargando estado...</p>
         </div>
 
-        <div id="tracking-content" class="hidden space-y-4">
+        <div id="tracking-content" class="hidden space-y-5">
             <!-- Vehículo -->
             <div class="bg-slate-700/50 p-4 rounded-xl flex items-center space-x-3 border border-slate-600/50">
-                <i class="fa-solid fa-car text-2xl text-indigo-400"></i>
+                <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center shrink-0">
+                    <i class="fa-solid fa-car text-indigo-400"></i>
+                </div>
                 <div>
-                    <p class="text-xs text-slate-400">Vehículo</p>
-                    <p id="vehicle" class="font-semibold text-white"></p>
+                    <p class="text-[10px] text-slate-500 uppercase tracking-wider">Vehículo</p>
+                    <p id="vehicle" class="font-semibold text-white text-sm"></p>
                 </div>
             </div>
 
-            <!-- Falla Reportada por el Taller -->
+            <!-- Falla Reportada -->
             <div class="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50">
-                <p class="text-xs text-slate-400 flex items-center gap-1">
-                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Falla Documentada:
+                <p class="text-[10px] text-slate-500 uppercase tracking-wider flex items-center gap-1 mb-1">
+                    <i class="fa-solid fa-triangle-exclamation text-amber-400"></i> Falla Documentada
                 </p>
-                <p id="reported_fault" class="text-sm font-medium text-slate-200 mt-1"></p>
+                <p id="reported_fault" class="text-sm text-slate-200"></p>
             </div>
 
-            <!-- Estado y Barra de Progreso -->
-            <div class="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50 space-y-2">
-                <div class="flex justify-between items-center">
-                    <span class="text-xs text-slate-400">Estado Actual</span>
-                    <span id="status" class="text-xs font-bold text-indigo-400 uppercase tracking-wide"></span>
-                </div>
+            <!-- Stepper de Estados -->
+            <div class="bg-slate-700/50 p-5 rounded-xl border border-slate-600/50">
+                <p class="text-[10px] text-slate-500 uppercase tracking-wider mb-4">Progreso de la Reparación</p>
                 
-                <!-- Barra de Progreso -->
-                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-700 overflow-hidden">
-                    <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full transition-all duration-700 ease-out" style="width: 0%"></div>
+                <div class="flex items-center justify-between relative mb-6">
+                    <!-- Línea de fondo -->
+                    <div class="absolute top-4 left-0 right-0 h-0.5 bg-slate-600"></div>
+                    <!-- Línea de progreso -->
+                    <div id="stepper-line" class="absolute top-4 left-0 h-0.5 bg-gradient-to-r from-indigo-500 to-emerald-400 transition-all duration-700" style="width: 0%"></div>
+
+                    <!-- Paso 1: Recibido -->
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-1" class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center border-2 border-slate-800 transition-all duration-500">
+                            <i class="fa-solid fa-inbox text-xs text-slate-400"></i>
+                        </div>
+                        <span class="text-[10px] text-slate-500 mt-2 font-semibold">Recibido</span>
+                    </div>
+
+                    <!-- Paso 2: En Revisión -->
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-2" class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center border-2 border-slate-800 transition-all duration-500">
+                            <i class="fa-solid fa-magnifying-glass text-xs text-slate-400"></i>
+                        </div>
+                        <span class="text-[10px] text-slate-500 mt-2 font-semibold">Revisión</span>
+                    </div>
+
+                    <!-- Paso 3: En Proceso -->
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-3" class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center border-2 border-slate-800 transition-all duration-500">
+                            <i class="fa-solid fa-gear text-xs text-slate-400"></i>
+                        </div>
+                        <span class="text-[10px] text-slate-500 mt-2 font-semibold">Proceso</span>
+                    </div>
+
+                    <!-- Paso 4: Finalizado -->
+                    <div class="flex flex-col items-center relative z-10">
+                        <div id="step-4" class="w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center border-2 border-slate-800 transition-all duration-500">
+                            <i class="fa-solid fa-check text-xs text-slate-400"></i>
+                        </div>
+                        <span class="text-[10px] text-slate-500 mt-2 font-semibold">Finalizado</span>
+                    </div>
                 </div>
-                <div class="text-right">
-                    <span id="progress-text" class="text-xs font-mono text-emerald-400 font-bold">0%</span>
+
+                <!-- Estado actual -->
+                <div class="text-center mt-4">
+                    <span id="status" class="text-sm font-bold text-indigo-400 uppercase tracking-wide"></span>
                 </div>
             </div>
 
-            <p class="text-[11px] text-center text-slate-500 pt-2">
-                Actualizado: <span id="updated_at" class="text-slate-400"></span>
+            <!-- Barra de Progreso -->
+            <div class="bg-slate-700/50 p-4 rounded-xl border border-slate-600/50">
+                <div class="flex justify-between items-center mb-2">
+                    <span class="text-[10px] text-slate-500 uppercase tracking-wider">Progreso General</span>
+                    <span id="progress-text" class="text-sm font-mono text-emerald-400 font-bold">0%</span>
+                </div>
+                <div class="w-full bg-slate-900 rounded-full h-3 border border-slate-600 overflow-hidden">
+                    <div id="progress-bar" class="bg-gradient-to-r from-indigo-500 to-emerald-400 h-full transition-all duration-700 ease-out rounded-full" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <p class="text-[11px] text-center text-slate-500 pt-1">
+                Última actualización: <span id="updated_at" class="text-slate-400"></span>
             </p>
         </div>
     </div>
 
     <script>
+        const STATUS_MAP = {
+            'recibido': 1,
+            'en_revision': 2,
+            'en_proceso': 3,
+            'finalizado': 4
+        };
+
+        const STATUS_LABELS = {
+            'recibido': 'Recibido',
+            'en_revision': 'En Revisión',
+            'en_proceso': 'En Proceso',
+            'finalizado': 'Finalizado'
+        };
+
+        function updateStepper(status) {
+            const currentStep = STATUS_MAP[status] || 0;
+            const percentage = ((currentStep - 1) / 3) * 100;
+
+            // Update progress line
+            document.getElementById('stepper-line').style.width = percentage + '%';
+
+            // Update each step
+            for (let i = 1; i <= 4; i++) {
+                const step = document.getElementById(`step-${i}`);
+                if (i <= currentStep) {
+                    step.className = 'w-8 h-8 rounded-full bg-indigo-500 flex items-center justify-center border-2 border-slate-800 transition-all duration-500 shadow-lg shadow-indigo-500/30';
+                    step.querySelector('i').className = step.querySelector('i').className.replace('text-slate-400', 'text-white');
+                } else {
+                    step.className = 'w-8 h-8 rounded-full bg-slate-600 flex items-center justify-center border-2 border-slate-800 transition-all duration-500';
+                    step.querySelector('i').className = step.querySelector('i').className.replace('text-white', 'text-slate-400');
+                }
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
             const trackingCode = "{{ $tracking_code }}";
 
@@ -87,22 +169,17 @@
 
                         document.getElementById('vehicle').textContent = data.vehicle;
                         document.getElementById('reported_fault').textContent = data.reported_fault ?? 'En revisión técnica';
-                        document.getElementById('status').textContent = data.status.replace('_', ' ');
+                        document.getElementById('status').textContent = STATUS_LABELS[data.status] ?? data.status;
                         
-                        // --- Cambio realizado aquí ---
-                        // Revisa 'current_progress' o 'progress'. Si no encuentra ninguno, usa '0%'
-                        let progressValue = data.current_progress ?? data.progress ?? '0%';
+                        updateStepper(data.status);
 
-                        // Formatea para asegurar que termine en "%" (ej. 50 -> "50%")
+                        let progressValue = data.current_progress ?? data.progress ?? '0%';
                         if (typeof progressValue === 'number' || !String(progressValue).includes('%')) {
                             progressValue = `${progressValue}%`;
                         }
 
-                        // Actualiza el ancho de la barra y el texto del porcentaje
                         document.getElementById('progress-bar').style.width = progressValue;
                         document.getElementById('progress-text').textContent = progressValue;
-                        // -----------------------------
-
                         document.getElementById('updated_at').textContent = data.updated_at;
                     })
                     .catch(error => {
@@ -118,10 +195,7 @@
                     });
             }
 
-            // Carga inicial al entrar
             fetchStatus();
-
-            // Auto-actualización silenciosa en tiempo real cada 5 segundos
             setInterval(fetchStatus, 5000);
         });
     </script>

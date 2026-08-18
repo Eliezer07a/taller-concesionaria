@@ -56,10 +56,6 @@
                 <div class="label">Patente</div>
                 <div class="value">{{ $vehicle->plate }}</div>
             </div>
-            <div class="field" style="flex:1">
-                <div class="label">VIN</div>
-                <div class="value">{{ $vehicle->vin }}</div>
-            </div>
         </div>
     </div>
 

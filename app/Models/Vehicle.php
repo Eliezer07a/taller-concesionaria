@@ -14,7 +14,6 @@ class Vehicle extends Model
         'brand',
         'model',
         'year',
-        'vin',
     ];
 
     // Relación: Un vehículo pertenece a un usuario (cliente)

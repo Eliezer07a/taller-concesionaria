@@ -7,6 +7,7 @@ use App\Models\WorkOrder;
 use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 use Barryvdh\DomPDF\Facade\Pdf;
 
 class TicketController extends Controller
@@ -26,9 +27,38 @@ class TicketController extends Controller
 
         // Mecánico: ve todos los tickets y vehículos con su propietario
         $tickets = DiagnosticTicket::with(['vehicle.user', 'workOrder', 'mechanic'])->latest()->get();
+
+        // Todos los vehículos registrados (para el selector con filtro)
         $vehicles = Vehicle::with('user')->get();
 
-        return view('dashboard', compact('tickets', 'vehicles'));
+        // Vehículos disponibles (sin reparación finalizada o con una activa en curso)
+        $disponibles = Vehicle::with('user')
+            ->where(function ($query) {
+                $query->whereDoesntHave('diagnosticTickets.workOrder')
+                      ->orWhereHas('diagnosticTickets.workOrder', fn($q) => $q->where('status', '!=', 'finalizado'));
+            })
+            ->get();
+
+        return view('dashboard', compact('tickets', 'vehicles', 'disponibles'));
+    }
+
+    // Endpoint JSON para auto-refrescar el panel del propietario (Fetch JS)
+    public function misReparaciones()
+    {
+        $vehicleIds = Vehicle::where('user_id', auth()->id())->pluck('id');
+
+        $tickets = DiagnosticTicket::with(['workOrder'])
+            ->whereIn('vehicle_id', $vehicleIds)
+            ->latest()
+            ->get()
+            ->filter(fn($t) => $t->workOrder)
+            ->map(fn($t) => [
+                'id'               => $t->id,
+                'status'           => $t->workOrder->status,
+                'current_progress' => $t->workOrder->current_progress ?? '0%',
+            ]);
+
+        return response()->json($tickets->values());
     }
 
     // Registra un nuevo ticket de diagnóstico y su orden de trabajo
@@ -41,7 +71,7 @@ class TicketController extends Controller
             'description'    => 'required|string|max:500',
             'cost'           => 'required|numeric|min:0',
             'photos'         => 'nullable|array|max:5',
-            'photos.*'       => 'image|mimes:jpeg,png,jpg|max:2048',
+            'photos.*'       => 'image|mimes:jpeg,png,jpg|max:8192',
         ]);
 
         // Subir fotos si existen
@@ -93,6 +123,20 @@ class TicketController extends Controller
             'status'           => $workOrder->status,
             'current_progress' => $workOrder->current_progress
         ]);
+    }
+
+    // Elimina un ticket y su orden de trabajo (con sus fotos)
+    public function destroy(DiagnosticTicket $ticket)
+    {
+        if ($ticket->photos) {
+            foreach ($ticket->photos as $photo) {
+                Storage::disk('public')->delete($photo);
+            }
+        }
+
+        $ticket->delete();
+
+        return response()->json(['message' => 'Registro eliminado correctamente']);
     }
 
     // Exporta la orden de trabajo como PDF
