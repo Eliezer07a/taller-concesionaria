@@ -36,38 +36,38 @@
             @endphp
 
             {{-- Datos del vehículo --}}
-            <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+            <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
                 <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
                     <div class="text-center">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-2">
                             <i class="fa-solid fa-user text-indigo-400"></i>
                         </div>
                         <p class="text-[10px] text-slate-500 uppercase tracking-wider">Propietario</p>
                         <p class="font-bold text-white text-sm mt-0.5">{{ $vehicle->user->name ?? '—' }}</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-2">
                             <i class="fa-solid fa-industry text-indigo-400"></i>
                         </div>
                         <p class="text-[10px] text-slate-500 uppercase tracking-wider">Marca</p>
                         <p class="font-bold text-white text-sm mt-0.5">{{ $vehicle->brand }}</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-2">
                             <i class="fa-solid fa-car text-indigo-400"></i>
                         </div>
                         <p class="text-[10px] text-slate-500 uppercase tracking-wider">Modelo</p>
                         <p class="font-bold text-white text-sm mt-0.5">{{ $vehicle->model }}</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-2">
                             <i class="fa-solid fa-calendar text-indigo-400"></i>
                         </div>
                         <p class="text-[10px] text-slate-500 uppercase tracking-wider">Año</p>
                         <p class="font-bold text-white text-sm mt-0.5">{{ $vehicle->year }}</p>
                     </div>
                     <div class="text-center">
-                        <div class="w-10 h-10 rounded-lg bg-indigo-500/10 flex items-center justify-center mx-auto mb-2">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-2">
                             <i class="fa-solid fa-hashtag text-indigo-400"></i>
                         </div>
                         <p class="text-[10px] text-slate-500 uppercase tracking-wider">Patente</p>
@@ -78,8 +78,8 @@
 
             {{-- Stats --}}
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center gap-3 hover:border-amber-500/50 transition group">
-                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 flex items-center justify-center group-hover:bg-amber-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 flex items-center gap-3 hover:border-amber-500/50 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-amber-500/10 border border-amber-500/20 flex items-center justify-center group-hover:bg-amber-500/20 transition-all duration-300">
                         <i class="fa-solid fa-clipboard-list text-lg text-amber-400"></i>
                     </div>
                     <div>
@@ -87,8 +87,8 @@
                         <p class="text-[10px] text-slate-400 uppercase tracking-wider">En Curso</p>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center gap-3 hover:border-emerald-500/50 transition group">
-                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 flex items-center gap-3 hover:border-emerald-500/50 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/20 transition-all duration-300">
                         <i class="fa-solid fa-circle-check text-lg text-emerald-400"></i>
                     </div>
                     <div>
@@ -96,8 +96,8 @@
                         <p class="text-[10px] text-slate-400 uppercase tracking-wider">Finalizadas</p>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center gap-3 hover:border-indigo-500/50 transition group">
-                    <div class="w-11 h-11 rounded-xl bg-indigo-500/10 flex items-center justify-center group-hover:bg-indigo-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 flex items-center gap-3 hover:border-indigo-500/50 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center group-hover:bg-indigo-500/20 transition-all duration-300">
                         <i class="fa-solid fa-wrench text-lg text-indigo-400"></i>
                     </div>
                     <div>
@@ -105,8 +105,8 @@
                         <p class="text-[10px] text-slate-400 uppercase tracking-wider">Reparaciones</p>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-4 flex items-center gap-3 hover:border-emerald-500/50 transition group">
-                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-4 flex items-center gap-3 hover:border-emerald-500/50 transition-all duration-300 group">
+                    <div class="w-11 h-11 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center group-hover:bg-emerald-500/20 transition-all duration-300">
                         <i class="fa-solid fa-dollar-sign text-lg text-emerald-400"></i>
                     </div>
                     <div>
@@ -117,7 +117,7 @@
             </div>
 
             {{-- Timeline de reparaciones --}}
-            <div class="bg-slate-800 border border-slate-700 rounded-xl p-6">
+            <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-6">
                 <div class="flex items-center gap-2 mb-6">
                     <i class="fa-solid fa-timeline text-indigo-400"></i>
                     <h3 class="text-base font-bold text-white">Historial de Reparaciones</h3>
@@ -127,14 +127,14 @@
                 <div class="relative pl-10 pb-8 last:pb-0">
                     {{-- Línea vertical --}}
                     @if(!$loop->last)
-                    <div class="absolute left-[13px] top-6 bottom-0 w-0.5 bg-slate-700"></div>
+                    <div class="absolute left-[13px] top-6 bottom-0 w-0.5 bg-slate-800/50"></div>
                     @endif
 
                     {{-- Dot de estado --}}
-                    <div class="absolute left-0 top-1 w-[27px] h-[27px] rounded-full border-[3px] border-slate-800 {{ $dotColors[$ticket->workOrder->status ?? 'recibido'] ?? 'bg-slate-500' }} z-10"></div>
+                    <div class="absolute left-0 top-1 w-[27px] h-[27px] rounded-full border-[3px] border-slate-900 {{ $dotColors[$ticket->workOrder->status ?? 'recibido'] ?? 'bg-slate-500' }} z-10"></div>
 
                     {{-- Card --}}
-                    <div class="bg-slate-900 border border-slate-700/50 rounded-xl p-4 hover:border-slate-600 transition">
+                    <div class="bg-slate-800/40 backdrop-blur border border-slate-700/50 rounded-2xl p-4 hover:border-slate-600/50 transition-all duration-300">
                         <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
                             <div>
                                 <span class="text-[10px] text-slate-500 uppercase tracking-wider">{{ $ticket->created_at->format('d/m/Y H:i') }}</span>
@@ -163,18 +163,18 @@
                         <div class="flex gap-2 mb-3 flex-wrap">
                             @foreach($ticket->photos as $photo)
                             <img src="{{ asset('storage/' . $photo) }}" alt="Foto del daño"
-                                 class="w-20 h-20 object-cover rounded-lg border border-slate-600 cursor-pointer hover:scale-110 transition">
+                                 class="w-20 h-20 object-cover rounded-xl border border-slate-700/50 cursor-pointer hover:scale-110 transition-all duration-300">
                             @endforeach
                         </div>
                         @endif
 
                         @if($ticket->workOrder)
-                        <div class="bg-slate-800 rounded-lg p-3 border border-slate-700/50 space-y-2">
+                        <div class="bg-slate-900/60 backdrop-blur rounded-xl p-3 border border-slate-800/50 space-y-2">
                             <div class="flex flex-wrap justify-between items-center gap-2 text-sm">
                                 <div class="flex items-center gap-2">
                                     <span class="font-mono font-bold text-indigo-400 text-xs">{{ $ticket->workOrder->tracking_code }}</span>
                                     <span class="text-slate-600">|</span>
-                                    <span class="text-slate-300 text-xs">{{ $ticket->workOrder->description }}</span>
+                                    <span class="text-slate-400 text-xs">{{ $ticket->workOrder->description }}</span>
                                 </div>
                                 <div class="flex items-center gap-3">
                                     <span class="font-bold text-emerald-400 text-sm">${{ number_format($ticket->workOrder->cost, 2) }}</span>
@@ -182,17 +182,17 @@
                                 </div>
                             </div>
                             <div class="flex items-center gap-3">
-                                <div class="flex-1 bg-slate-700 rounded-full h-2">
+                                <div class="flex-1 bg-slate-800/60 rounded-full h-2">
                                     <div class="{{ $barColors[$ticket->workOrder->status] ?? 'bg-indigo-500' }} h-2 rounded-full transition-all duration-500"
                                          style="width: {{ $ticket->workOrder->current_progress }}"></div>
                                 </div>
                                 <span class="font-mono text-xs text-indigo-400">{{ $ticket->workOrder->current_progress }}</span>
                                 <a href="{{ route('work-orders.pdf', $ticket->workOrder) }}" target="_blank"
-                                   class="px-2.5 py-1 bg-red-600/80 text-white rounded-lg text-[11px] font-bold hover:bg-red-500 transition inline-flex items-center gap-1">
+                                   class="px-2.5 py-1 bg-red-600/80 text-white rounded-xl text-[11px] font-bold hover:bg-red-500 transition-all duration-300 shadow-lg shadow-red-500/20 inline-flex items-center gap-1">
                                     <i class="fa-solid fa-file-pdf"></i> PDF
                                 </a>
                                 <a href="/seguimiento/{{ $ticket->workOrder->tracking_code }}" target="_blank"
-                                   class="text-indigo-400 hover:text-indigo-300 text-sm transition">
+                                   class="text-indigo-400 hover:text-indigo-300 text-sm transition-all duration-300">
                                     <i class="fa-solid fa-arrow-up-right-from-square"></i>
                                 </a>
                             </div>
@@ -202,11 +202,11 @@
                 </div>
                 @empty
                 <div class="text-center py-16">
-                    <div class="w-16 h-16 rounded-2xl bg-slate-700/50 border border-slate-600/50 flex items-center justify-center mx-auto mb-4">
-                        <i class="fa-solid fa-car-side text-2xl text-slate-500"></i>
+                    <div class="w-16 h-16 rounded-2xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center mx-auto mb-4">
+                        <i class="fa-solid fa-car-side text-2xl text-indigo-400"></i>
                     </div>
                     <p class="text-white font-semibold mb-1">Sin historial</p>
-                    <p class="text-slate-500 text-sm">No hay reparaciones registradas para este vehículo.</p>
+                    <p class="text-slate-400 text-sm">No hay reparaciones registradas para este vehículo.</p>
                 </div>
                 @endforelse
             </div>

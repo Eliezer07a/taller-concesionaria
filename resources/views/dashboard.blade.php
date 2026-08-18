@@ -10,7 +10,7 @@
 
             @if(session('success'))
                 <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)"
-                     class="p-4 text-sm text-emerald-300 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-semibold flex items-center gap-2">
+                     class="p-4 text-sm text-emerald-300 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 font-semibold flex items-center gap-2 backdrop-blur-sm">
                     <i class="fa-solid fa-circle-check text-lg"></i>
                     {{ session('success') }}
                     <button @click="show = false" class="ml-auto text-emerald-400 hover:text-white"><i class="fa-solid fa-xmark"></i></button>
@@ -18,7 +18,7 @@
             @endif
 
             @if($errors->any())
-                <div class="p-4 text-sm text-red-300 rounded-xl bg-red-500/10 border border-red-500/20">
+                <div class="p-4 text-sm text-red-300 rounded-2xl bg-red-500/10 border border-red-500/20 backdrop-blur-sm">
                     <ul class="list-disc list-inside space-y-1">
                         @foreach($errors->all() as $error)
                             <li>{{ $error }}</li>
@@ -36,8 +36,8 @@
             @endphp
 
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex items-center gap-4 hover:border-indigo-500/50 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-indigo-500/10 flex items-center justify-center group-hover:bg-indigo-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-5 flex items-center gap-4 hover:border-indigo-500/50 hover:shadow-lg hover:shadow-indigo-500/10 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-indigo-500/20 to-indigo-600/10 flex items-center justify-center group-hover:from-indigo-500/30 group-hover:to-indigo-600/20 transition-all duration-300">
                         <i class="fa-solid fa-wrench text-xl text-indigo-400"></i>
                     </div>
                     <div>
@@ -45,8 +45,8 @@
                         <p class="text-xs text-slate-400">Activas Ahora</p>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex items-center gap-4 hover:border-emerald-500/50 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-5 flex items-center gap-4 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 flex items-center justify-center group-hover:from-emerald-500/30 group-hover:to-emerald-600/20 transition-all duration-300">
                         <i class="fa-solid fa-circle-check text-xl text-emerald-400"></i>
                     </div>
                     <div>
@@ -54,8 +54,8 @@
                         <p class="text-xs text-slate-400">Finalizadas</p>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex items-center gap-4 hover:border-amber-500/50 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-amber-500/10 flex items-center justify-center group-hover:bg-amber-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-5 flex items-center gap-4 hover:border-amber-500/50 hover:shadow-lg hover:shadow-amber-500/10 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-amber-500/20 to-amber-600/10 flex items-center justify-center group-hover:from-amber-500/30 group-hover:to-amber-600/20 transition-all duration-300">
                         <i class="fa-solid fa-car text-xl text-amber-400"></i>
                     </div>
                     <div>
@@ -63,8 +63,8 @@
                         <p class="text-xs text-slate-400">Vehículos en Taller</p>
                     </div>
                 </div>
-                <div class="bg-slate-800 border border-slate-700 rounded-xl p-5 flex items-center gap-4 hover:border-emerald-500/50 transition group">
-                    <div class="w-12 h-12 rounded-xl bg-emerald-500/10 flex items-center justify-center group-hover:bg-emerald-500/20 transition">
+                <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl p-5 flex items-center gap-4 hover:border-emerald-500/50 hover:shadow-lg hover:shadow-emerald-500/10 transition-all duration-300 group">
+                    <div class="w-12 h-12 rounded-2xl bg-gradient-to-br from-emerald-500/20 to-emerald-600/10 flex items-center justify-center group-hover:from-emerald-500/30 group-hover:to-emerald-600/20 transition-all duration-300">
                         <i class="fa-solid fa-dollar-sign text-xl text-emerald-400"></i>
                     </div>
                     <div>
@@ -75,8 +75,8 @@
             </div>
 
             {{-- Formulario crear ticket --}}
-            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-700 flex items-center gap-2">
+            <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-800/50 flex items-center gap-2 bg-gradient-to-r from-indigo-500/10 via-transparent to-transparent">
                     <i class="fa-solid fa-folder-plus text-indigo-400"></i>
                     <h3 class="text-base font-bold text-white">Documentar Falla y Crear Orden de Trabajo</h3>
                 </div>
@@ -131,7 +131,7 @@
                     </div>
 
                     <div class="md:col-span-2 flex justify-end">
-                        <button type="submit" class="px-5 py-2.5 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 transition flex items-center gap-2">
+                        <button type="submit" class="px-5 py-2.5 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 shadow-lg shadow-indigo-500/20 transition flex items-center gap-2">
                             <i class="fa-solid fa-paper-plane"></i> Generar Ticket y Código
                         </button>
                     </div>
@@ -143,29 +143,29 @@
                 $activas = $tickets->filter(fn($t) => $t->workOrder && $t->workOrder->status !== 'finalizado');
                 $finalizadas = $tickets->filter(fn($t) => $t->workOrder && $t->workOrder->status === 'finalizado');
                 $statusColors = [
-                    'recibido' => 'bg-slate-500/20 text-slate-300 border border-slate-500/30',
-                    'en_revision' => 'bg-blue-500/20 text-blue-300 border border-blue-500/30',
-                    'en_proceso' => 'bg-amber-500/20 text-amber-300 border border-amber-500/30',
-                    'finalizado' => 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/30',
+                    'recibido' => 'bg-slate-500/10 text-slate-300 border border-slate-500/30',
+                    'en_revision' => 'bg-blue-500/10 text-blue-300 border border-blue-500/30',
+                    'en_proceso' => 'bg-amber-500/10 text-amber-300 border border-amber-500/30',
+                    'finalizado' => 'bg-emerald-500/10 text-emerald-300 border border-emerald-500/30',
                 ];
             @endphp
 
-            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
-                <div class="px-6 py-4 border-b border-slate-700 flex items-center justify-between flex-wrap gap-3">
+            <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden">
+                <div class="px-6 py-4 border-b border-slate-800/50 flex items-center justify-between flex-wrap gap-3 bg-gradient-to-r from-slate-800/40 via-transparent to-transparent">
                     <div class="flex items-center gap-2">
                         <i class="fa-solid fa-list-check text-indigo-400"></i>
                         <h3 class="text-base font-bold text-white">Reparaciones y Control de Avance</h3>
                     </div>
                     <div class="flex gap-2">
                         <button onclick="switchTab('activas')" id="tab-btn-activas"
-                                class="px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white flex items-center gap-2 transition hover:bg-indigo-500">
+                                class="px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 flex items-center gap-2 transition hover:bg-indigo-500">
                             <i class="fa-solid fa-wrench"></i> Activas
                             <span class="bg-white/20 rounded-full px-2 py-0.5 text-[10px]">{{ $activas->count() }}</span>
                         </button>
                         <button onclick="switchTab('finalizadas')" id="tab-btn-finalizadas"
-                                class="px-4 py-2 rounded-lg text-xs font-bold bg-slate-700 text-slate-300 hover:bg-slate-600 flex items-center gap-2 transition">
+                                class="px-4 py-2 rounded-lg text-xs font-bold bg-slate-700/50 text-slate-300 hover:bg-slate-600/50 flex items-center gap-2 transition">
                             <i class="fa-solid fa-circle-check"></i> Finalizadas
-                            <span class="bg-slate-600 rounded-full px-2 py-0.5 text-[10px]">{{ $finalizadas->count() }}</span>
+                            <span class="bg-slate-600/50 rounded-full px-2 py-0.5 text-[10px]">{{ $finalizadas->count() }}</span>
                         </button>
                     </div>
                 </div>
@@ -173,7 +173,7 @@
                 {{-- Panel Activas --}}
                 <div id="panel-activas" class="overflow-x-auto">
                     <table class="w-full text-sm text-left">
-                        <thead class="text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-700">
+                        <thead class="text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800/50">
                             <tr>
                                 <th class="px-5 py-3">Código</th>
                                 <th class="px-5 py-3">Vehículo</th>
@@ -185,9 +185,9 @@
                                 <th class="px-5 py-3 text-right">Acción</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-700/50">
+                        <tbody class="divide-y divide-slate-800/50">
                             @forelse($activas as $ticket)
-                            <tr class="hover:bg-slate-700/30 transition">
+                            <tr class="hover:bg-slate-800/30 transition">
                                 <td class="px-5 py-3">
                                     <a href="/seguimiento/{{ $ticket->workOrder->tracking_code }}" target="_blank" class="font-mono font-bold text-indigo-400 hover:text-indigo-300 hover:underline text-xs">
                                         {{ $ticket->workOrder->tracking_code }} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
@@ -200,7 +200,7 @@
                                     </a>
                                 </td>
                                 <td class="px-5 py-3">
-                                    <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full bg-slate-700 text-slate-300">
+                                    <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full bg-slate-700/50 border border-slate-600/30 text-slate-300">
                                         <i class="fa-solid fa-user text-indigo-400 text-[9px]"></i> {{ $ticket->vehicle->user->name ?? 'Sin prop.' }}
                                     </span>
                                 </td>
@@ -209,7 +209,7 @@
                                     @if($ticket->photos && count($ticket->photos) > 0)
                                     <div class="flex gap-1">
                                         @foreach(array_slice($ticket->photos, 0, 3) as $photo)
-                                        <img src="{{ asset('storage/' . $photo) }}" class="w-7 h-7 object-cover rounded-md border border-slate-600">
+                                        <img src="{{ asset('storage/' . $photo) }}" class="w-7 h-7 object-cover rounded-md border border-slate-600/50">
                                         @endforeach
                                         @if(count($ticket->photos) > 3)
                                         <span class="text-[10px] text-slate-500 self-center">+{{ count($ticket->photos) - 3 }}</span>
@@ -238,13 +238,13 @@
                                 </td>
                                 <td class="px-5 py-3">
                                     <div class="flex items-center justify-end gap-2">
-                                        <button onclick="updateProgress({{ $ticket->workOrder->id }})" class="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-bold hover:bg-emerald-500 transition">
+                                        <button onclick="updateProgress({{ $ticket->workOrder->id }})" class="px-3 py-1.5 bg-emerald-600 text-white rounded-lg text-xs font-bold hover:bg-emerald-500 shadow-lg shadow-emerald-500/20 transition">
                                             <i class="fa-solid fa-check mr-1"></i> Actualizar
                                         </button>
-                                        <a href="{{ route('work-orders.pdf', $ticket->workOrder) }}" target="_blank" class="px-3 py-1.5 bg-red-600/80 text-white rounded-lg text-xs font-bold hover:bg-red-500 transition inline-flex items-center gap-1">
+                                        <a href="{{ route('work-orders.pdf', $ticket->workOrder) }}" target="_blank" class="px-3 py-1.5 bg-red-600/80 text-white rounded-lg text-xs font-bold hover:bg-red-500 shadow-lg shadow-red-500/20 transition inline-flex items-center gap-1">
                                             <i class="fa-solid fa-file-pdf"></i>
                                         </a>
-                                        <button onclick="deleteTicket({{ $ticket->id }})" title="Eliminar" class="px-3 py-1.5 bg-rose-600/80 text-white rounded-lg text-xs font-bold hover:bg-rose-500 transition">
+                                        <button onclick="deleteTicket({{ $ticket->id }})" title="Eliminar" class="px-3 py-1.5 bg-rose-600/80 text-white rounded-lg text-xs font-bold hover:bg-rose-500 shadow-lg shadow-rose-500/20 transition">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </div>
@@ -268,7 +268,7 @@
                 {{-- Panel Finalizadas --}}
                 <div id="panel-finalizadas" class="hidden overflow-x-auto">
                     <table class="w-full text-sm text-left">
-                        <thead class="text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-700">
+                        <thead class="text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800/50">
                             <tr>
                                 <th class="px-5 py-3">Código</th>
                                 <th class="px-5 py-3">Vehículo</th>
@@ -281,9 +281,9 @@
                                 <th class="px-5 py-3 text-right">Acción</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-700/50">
+                        <tbody class="divide-y divide-slate-800/50">
                             @forelse($finalizadas as $ticket)
-                            <tr class="hover:bg-slate-700/30 transition">
+                            <tr class="hover:bg-slate-800/30 transition">
                                 <td class="px-5 py-3">
                                     <a href="/seguimiento/{{ $ticket->workOrder->tracking_code }}" target="_blank" class="font-mono font-bold text-indigo-400 hover:text-indigo-300 hover:underline text-xs">
                                         {{ $ticket->workOrder->tracking_code }} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
@@ -296,18 +296,18 @@
                                     </a>
                                 </td>
                                 <td class="px-5 py-3">
-                                    <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full bg-slate-700 text-slate-300">
+                                    <span class="inline-flex items-center gap-1 text-[11px] font-semibold px-2 py-1 rounded-full bg-slate-700/50 border border-slate-600/30 text-slate-300">
                                         <i class="fa-solid fa-user text-indigo-400 text-[9px]"></i> {{ $ticket->vehicle->user->name ?? 'Sin prop.' }}
                                     </span>
                                 </td>
                                 <td class="px-5 py-3 text-slate-300 text-xs max-w-[200px] truncate" title="{{ $ticket->reported_fault }}">{{ $ticket->reported_fault }}</td>
                                 <td class="px-5 py-3">
-                                    <span class="text-[11px] font-bold px-2.5 py-1 rounded-full {{ $statusColors[$ticket->workOrder->status] ?? 'bg-slate-500/20 text-slate-300' }}">
+                                    <span class="text-[11px] font-bold px-2.5 py-1 rounded-full {{ $statusColors[$ticket->workOrder->status] ?? 'bg-slate-500/10 text-slate-300' }}">
                                         {{ ucfirst(str_replace('_', ' ', $ticket->workOrder->status)) }}
                                     </span>
                                 </td>
                                 <td class="px-5 py-3">
-                                    <div class="w-20 bg-slate-700 rounded-full h-1.5">
+                                    <div class="w-20 bg-slate-800/50 rounded-full h-1.5">
                                         <div class="bg-emerald-500 h-1.5 rounded-full" style="width: {{ $ticket->workOrder->current_progress }}"></div>
                                     </div>
                                     <span class="text-[10px] font-mono text-emerald-400">{{ $ticket->workOrder->current_progress }}</span>
@@ -316,10 +316,10 @@
                                 <td class="px-5 py-3 text-xs text-slate-400">{{ $ticket->workOrder->updated_at->format('d/m/Y') }}</td>
                                 <td class="px-5 py-3">
                                     <div class="flex items-center justify-end gap-2">
-                                        <a href="{{ route('work-orders.pdf', $ticket->workOrder) }}" target="_blank" class="px-3 py-1.5 bg-red-600/80 text-white rounded-lg text-xs font-bold hover:bg-red-500 transition inline-flex items-center gap-1">
+                                        <a href="{{ route('work-orders.pdf', $ticket->workOrder) }}" target="_blank" class="px-3 py-1.5 bg-red-600/80 text-white rounded-lg text-xs font-bold hover:bg-red-500 shadow-lg shadow-red-500/20 transition inline-flex items-center gap-1">
                                             <i class="fa-solid fa-file-pdf"></i>
                                         </a>
-                                        <button onclick="deleteTicket({{ $ticket->id }})" title="Eliminar" class="px-3 py-1.5 bg-rose-600/80 text-white rounded-lg text-xs font-bold hover:bg-rose-500 transition">
+                                        <button onclick="deleteTicket({{ $ticket->id }})" title="Eliminar" class="px-3 py-1.5 bg-rose-600/80 text-white rounded-lg text-xs font-bold hover:bg-rose-500 shadow-lg shadow-rose-500/20 transition">
                                             <i class="fa-solid fa-trash"></i>
                                         </button>
                                     </div>
@@ -328,7 +328,7 @@
                             @empty
                             <tr>
                                 <td colspan="9" class="px-5 py-16 text-center">
-                                    <div class="w-16 h-16 rounded-2xl bg-slate-700/50 border border-slate-600/50 flex items-center justify-center mx-auto mb-4">
+                                    <div class="w-16 h-16 rounded-2xl bg-slate-700/30 border border-slate-600/30 flex items-center justify-center mx-auto mb-4">
                                         <i class="fa-solid fa-hourglass-half text-2xl text-slate-500"></i>
                                     </div>
                                     <p class="text-white font-semibold mb-1">Sin finalizar</p>
@@ -346,8 +346,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
-        const ACTIVE_BTN = 'px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white flex items-center gap-2 transition hover:bg-indigo-500';
-        const INACTIVE_BTN = 'px-4 py-2 rounded-lg text-xs font-bold bg-slate-700 text-slate-300 hover:bg-slate-600 flex items-center gap-2 transition';
+        const ACTIVE_BTN = 'px-4 py-2 rounded-lg text-xs font-bold bg-indigo-600 text-white shadow-lg shadow-indigo-500/20 flex items-center gap-2 transition hover:bg-indigo-500';
+        const INACTIVE_BTN = 'px-4 py-2 rounded-lg text-xs font-bold bg-slate-700/50 text-slate-300 hover:bg-slate-600/50 flex items-center gap-2 transition';
 
         const incluirEntregados = document.getElementById('incluir-entregados');
         if (incluirEntregados) {
@@ -375,7 +375,7 @@
 
                 const img = document.createElement('img');
                 img.src = URL.createObjectURL(file);
-                img.className = 'block w-full h-full object-cover rounded-lg border border-slate-600';
+                img.className = 'block w-full h-full object-cover rounded-lg border border-slate-600/50';
 
                 const badge = document.createElement('span');
                 badge.className = 'absolute -top-2 -right-2 bg-indigo-600 text-white text-[10px] font-bold rounded-full px-1.5';

@@ -10,22 +10,23 @@
 
             @if(session('success'))
                 <div x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 4000)"
-                     class="p-4 text-sm text-emerald-300 rounded-xl bg-emerald-500/10 border border-emerald-500/20 font-semibold flex items-center gap-2">
+                     class="p-4 text-sm text-emerald-300 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 backdrop-blur-xl font-semibold flex items-center gap-2">
                     <i class="fa-solid fa-circle-check text-lg"></i>
                     {{ session('success') }}
                 </div>
             @endif
 
             <div class="flex justify-end">
-                <a href="{{ route('vehicles.create') }}" class="px-5 py-2.5 bg-indigo-600 text-white font-bold rounded-lg hover:bg-indigo-500 transition flex items-center gap-2">
+                <a href="{{ route('vehicles.create') }}"
+                   class="px-5 py-2.5 bg-indigo-600 text-white font-bold rounded-xl hover:bg-indigo-500 transition-all duration-300 shadow-lg shadow-indigo-500/20 flex items-center gap-2">
                     <i class="fa-solid fa-plus"></i> Nuevo Vehículo
                 </a>
             </div>
 
-            <div class="bg-slate-800 border border-slate-700 rounded-xl overflow-hidden">
+            <div class="bg-slate-900/60 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden">
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left">
-                        <thead class="text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-700">
+                        <thead class="text-[11px] text-slate-400 uppercase tracking-wider border-b border-slate-800/50">
                             <tr>
                                 <th class="px-5 py-3">Propietario</th>
                                 <th class="px-5 py-3">Patente</th>
@@ -35,29 +36,33 @@
                                 <th class="px-5 py-3 text-right">Acciones</th>
                             </tr>
                         </thead>
-                        <tbody class="divide-y divide-slate-700/50">
+                        <tbody class="divide-y divide-slate-800/50">
                             @forelse($vehicles as $vehicle)
-                            <tr class="hover:bg-slate-700/30 transition">
+                            <tr class="hover:bg-slate-800/40 transition">
                                 <td class="px-5 py-3 font-semibold text-white">{{ $vehicle->user->name ?? '—' }}</td>
                                 <td class="px-5 py-3 font-mono font-bold text-indigo-400">{{ $vehicle->plate }}</td>
-                                <td class="px-5 py-3 text-slate-300">{{ $vehicle->brand }}</td>
-                                <td class="px-5 py-3 text-slate-300">{{ $vehicle->model }}</td>
-                                <td class="px-5 py-3 text-slate-300">{{ $vehicle->year }}</td>
+                                <td class="px-5 py-3 text-slate-400">{{ $vehicle->brand }}</td>
+                                <td class="px-5 py-3 text-slate-400">{{ $vehicle->model }}</td>
+                                <td class="px-5 py-3 text-slate-400">{{ $vehicle->year }}</td>
                                 <td class="px-5 py-3">
                                     <div class="flex items-center justify-end gap-2">
-                                        <a href="{{ route('dashboard') }}" class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-600/80 text-white rounded-lg text-xs font-bold hover:bg-emerald-500 transition" title="Ir al panel de control">
+                                        <a href="{{ route('dashboard') }}"
+                                           class="inline-flex items-center gap-1 px-3 py-1.5 bg-emerald-600/80 text-white rounded-xl text-xs font-bold hover:bg-emerald-500 transition-all duration-300 shadow-lg shadow-emerald-500/20" title="Ir al panel de control">
                                             <i class="fa-solid fa-gauge-high"></i> Panel
                                         </a>
-                                        <a href="{{ route('vehicles.history', $vehicle) }}" class="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-600 text-white rounded-lg text-xs font-bold hover:bg-indigo-500 transition" title="Ver ficha del vehículo">
+                                        <a href="{{ route('vehicles.history', $vehicle) }}"
+                                           class="inline-flex items-center gap-1 px-3 py-1.5 bg-indigo-600 text-white rounded-xl text-xs font-bold hover:bg-indigo-500 transition-all duration-300 shadow-lg shadow-indigo-500/20" title="Ver ficha del vehículo">
                                             <i class="fa-solid fa-folder-open"></i> Ficha
                                         </a>
-                                        <a href="{{ route('vehicles.edit', $vehicle) }}" class="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-600/80 text-white rounded-lg text-xs font-bold hover:bg-blue-500 transition">
+                                        <a href="{{ route('vehicles.edit', $vehicle) }}"
+                                           class="inline-flex items-center gap-1 px-3 py-1.5 bg-blue-600/80 text-white rounded-xl text-xs font-bold hover:bg-blue-500 transition-all duration-300 shadow-lg shadow-blue-500/20">
                                             <i class="fa-solid fa-pen"></i> Editar
                                         </a>
                                         <form action="{{ route('vehicles.destroy', $vehicle) }}" method="POST" onsubmit="return confirm('¿Eliminar este vehículo?')">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="inline-flex items-center gap-1 px-3 py-1.5 bg-red-600/80 text-white rounded-lg text-xs font-bold hover:bg-red-500 transition">
+                                            <button type="submit"
+                                                    class="inline-flex items-center gap-1 px-3 py-1.5 bg-red-600/80 text-white rounded-xl text-xs font-bold hover:bg-red-500 transition-all duration-300 shadow-lg shadow-red-500/20">
                                                 <i class="fa-solid fa-trash"></i> Eliminar
                                             </button>
                                         </form>
@@ -71,7 +76,7 @@
                                         <i class="fa-solid fa-car-side text-2xl text-indigo-400"></i>
                                     </div>
                                     <p class="text-white font-semibold mb-1">Sin vehículos</p>
-                                    <p class="text-slate-500 text-sm">No hay vehículos registrados aún.</p>
+                                    <p class="text-slate-400 text-sm">No hay vehículos registrados aún.</p>
                                 </td>
                             </tr>
                             @endforelse
