@@ -18,13 +18,13 @@
         <!-- Nav Links -->
         <nav class="flex-1 py-4 space-y-1 px-3 overflow-y-auto">
             @if(Auth::user()->role === 'mecanico')
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
-                    <i class="fa-solid fa-gauge-high text-base w-5 text-center shrink-0"></i>
-                    <span x-show="sidebarOpen" x-transition>Dashboard</span>
-                </a>
                 <a href="{{ route('vehicles.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('vehicles.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
                     <i class="fa-solid fa-car text-base w-5 text-center shrink-0"></i>
                     <span x-show="sidebarOpen" x-transition>Vehículos</span>
+                </a>
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
+                    <i class="fa-solid fa-gauge-high text-base w-5 text-center shrink-0"></i>
+                    <span x-show="sidebarOpen" x-transition>Dashboard</span>
                 </a>
             @else
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
@@ -80,11 +80,11 @@
 
         <nav class="flex-1 py-4 space-y-1 px-3">
             @if(Auth::user()->role === 'mecanico')
-                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
-                    <i class="fa-solid fa-gauge-high w-5 text-center"></i> Dashboard
-                </a>
                 <a href="{{ route('vehicles.index') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('vehicles.*') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
                     <i class="fa-solid fa-car w-5 text-center"></i> Vehículos
+                </a>
+                <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
+                    <i class="fa-solid fa-gauge-high w-5 text-center"></i> Dashboard
                 </a>
             @else
                 <a href="{{ route('dashboard') }}" class="flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition {{ request()->routeIs('dashboard') ? 'bg-indigo-600/20 text-indigo-400 border border-indigo-500/30' : 'text-slate-400 hover:text-white hover:bg-slate-700/50' }}">
